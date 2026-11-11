@@ -1,4 +1,4 @@
-import { schedule } from "../../data/mockData";
+import type { ScheduleEvent } from "../../types";
 
 const colors = {
   class: "bg-blue-500",
@@ -6,7 +6,11 @@ const colors = {
   work: "bg-emerald-500",
 };
 
-export default function TodaySchedule() {
+export default function TodaySchedule({
+  events,
+}: {
+  events: ScheduleEvent[];
+}) {
   return (
     <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
@@ -16,7 +20,7 @@ export default function TodaySchedule() {
 
       <div className="space-y-6">
 
-        {schedule.map((event) => (
+        {events.map((event) => (
           <div key={event.id} className="flex gap-5">
 
             <div className="text-sm text-slate-500 w-24">

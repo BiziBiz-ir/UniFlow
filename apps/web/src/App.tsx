@@ -4,6 +4,12 @@ import Header from "./components/layout/Header";
 import StatCard from "./components/dashboard/StatCard";
 import TodaySchedule from "./components/dashboard/TodaySchedule";
 import UpcomingTasks from "./components/dashboard/UpcomingTasks";
+import { schedule, tasks } from "./data/mockData";
+import {
+  countClasses,
+  countPendingTasks,
+  formatStudyTime,
+} from "./data/dashboardStats";
 
 import {
   CheckSquare,
@@ -12,6 +18,9 @@ import {
 } from "lucide-react";
 
 function App() {
+  const pendingTasks = countPendingTasks(tasks);
+  const studyTime = formatStudyTime(schedule);
+  const classesToday = countClasses(schedule);
   return (
     <div className="min-h-screen bg-slate-950 flex">
 
@@ -39,21 +48,21 @@ function App() {
 
             <StatCard
               title="Pending Tasks"
-              value="4"
+              value={String(pendingTasks)}
               description="Tasks waiting for completion"
               icon={CheckSquare}
             />
 
             <StatCard
               title="Study Time"
-              value="3.5h"
+              value={studyTime}
               description="Planned for today"
               icon={Clock}
             />
 
             <StatCard
               title="Classes"
-              value="2"
+              value={String(classesToday)}
               description="University classes today"
               icon={GraduationCap}
             />
@@ -62,9 +71,9 @@ function App() {
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
-            <TodaySchedule />
+            <TodaySchedule events={schedule} />
 
-            <UpcomingTasks />
+            <UpcomingTasks tasks={tasks} />
 
           </div>
 

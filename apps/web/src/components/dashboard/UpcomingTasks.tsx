@@ -1,6 +1,6 @@
-import { tasks } from "../../data/mockData";
+import type { Task } from "../../types";
 
-export default function UpcomingTasks() {
+export default function UpcomingTasks({ tasks }: { tasks: Task[] }) {
   return (
     <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
 
