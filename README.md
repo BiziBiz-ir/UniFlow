@@ -2,7 +2,7 @@
 
 An academic workspace for university students: track tasks, classes, study time and schedules in one dashboard.
 
-> **Status:** early prototype. The dashboard UI is built and renders from mock data; interactivity, routing and persistence are next.
+> **Status:** early prototype. The dashboard is interactive (add, edit, complete and delete tasks) and stats update live. Data is in-memory for now; routing and persistence are next.
 
 ## Tech stack
 
@@ -56,7 +56,7 @@ The app runs at the URL printed by Vite (usually http://localhost:5173).
 
 - [x] Project setup and dashboard shell
 - [x] Dashboard rendered from typed mock data
-- [ ] Interactive task management (add / edit / complete / delete)
+- [x] Interactive task management (add / edit / complete / delete)
 - [ ] Pages and routing (Dashboard, Tasks, Calendar, Subjects, Schedule)
 - [ ] Persistence (localStorage, then optional backend)
 - [ ] Calendar view

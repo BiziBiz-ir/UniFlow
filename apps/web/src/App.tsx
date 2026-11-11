@@ -3,13 +3,14 @@ import Header from "./components/layout/Header";
 
 import StatCard from "./components/dashboard/StatCard";
 import TodaySchedule from "./components/dashboard/TodaySchedule";
-import UpcomingTasks from "./components/dashboard/UpcomingTasks";
-import { schedule, tasks } from "./data/mockData";
+import TasksPanel from "./components/tasks/TasksPanel";
+import { schedule } from "./data/mockData";
 import {
   countClasses,
   countPendingTasks,
   formatStudyTime,
 } from "./data/dashboardStats";
+import { useTasks } from "./hooks/useTasks";
 
 import {
   CheckSquare,
@@ -18,6 +19,9 @@ import {
 } from "lucide-react";
 
 function App() {
+  const { tasks, addTask, updateTask, deleteTask, toggleTaskStatus } =
+    useTasks();
+
   const pendingTasks = countPendingTasks(tasks);
   const studyTime = formatStudyTime(schedule);
   const classesToday = countClasses(schedule);
@@ -73,7 +77,13 @@ function App() {
 
             <TodaySchedule events={schedule} />
 
-            <UpcomingTasks tasks={tasks} />
+            <TasksPanel
+              tasks={tasks}
+              onAdd={addTask}
+              onUpdate={updateTask}
+              onDelete={deleteTask}
+              onToggleStatus={toggleTaskStatus}
+            />
 
           </div>
 
