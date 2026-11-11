@@ -93,12 +93,12 @@ export default function TasksPanel({
   }
 
   return (
-    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6">
 
       <div className="mb-5 flex items-center justify-between gap-3">
         <div>
           <h3 className="text-white font-semibold text-lg">{title}</h3>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-slate-400" aria-live="polite">
             {openTasks} open · {counts.completed} completed
           </p>
         </div>
@@ -106,6 +106,7 @@ export default function TasksPanel({
         <button
           type="button"
           onClick={openCreate}
+          aria-haspopup="dialog"
           className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-indigo-500 px-3.5 py-2 text-sm font-medium text-white transition hover:bg-indigo-400"
         >
           <Plus size={16} />
@@ -113,12 +114,17 @@ export default function TasksPanel({
         </button>
       </div>
 
-      <div className="mb-4 flex flex-wrap gap-1.5">
+      <div
+        role="group"
+        aria-label="Filter tasks"
+        className="mb-4 flex flex-wrap gap-1.5"
+      >
         {filters.map(({ value, label }) => (
           <button
             key={value}
             type="button"
             onClick={() => setFilter(value)}
+            aria-pressed={filter === value}
             className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition ${
               filter === value
                 ? "bg-indigo-500/15 text-indigo-300"
@@ -128,7 +134,7 @@ export default function TasksPanel({
             {label}
             <span
               className={`ml-1.5 ${
-                filter === value ? "text-indigo-300/70" : "text-slate-600"
+                filter === value ? "text-indigo-200/80" : "text-slate-400"
               }`}
             >
               {counts[value]}
@@ -152,8 +158,8 @@ export default function TasksPanel({
       ) : (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-800 px-6 py-10 text-center">
           <Inbox size={28} className="text-slate-600" />
-          <p className="mt-3 text-sm text-slate-400">No tasks here</p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-3 text-sm text-slate-300">No tasks here</p>
+          <p className="mt-1 text-xs text-slate-400">
             {filter === "all"
               ? "Add your first task to get started."
               : `No ${filter.replace("-", " ")} tasks.`}

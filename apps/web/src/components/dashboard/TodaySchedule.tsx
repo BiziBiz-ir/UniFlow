@@ -12,7 +12,7 @@ export default function TodaySchedule({
   events: ScheduleEvent[];
 }) {
   return (
-    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <section className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6">
 
       <h3 className="text-white font-semibold text-lg mb-6">
         Today's Schedule
@@ -23,7 +23,7 @@ export default function TodaySchedule({
         {events.map((event) => (
           <div key={event.id} className="flex gap-5">
 
-            <div className="text-sm text-slate-500 w-24">
+            <div className="w-24 text-sm text-slate-400">
               {event.startTime}
             </div>
 
@@ -36,7 +36,7 @@ export default function TodaySchedule({
                   {event.title}
                 </p>
 
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="mt-1 text-xs text-slate-400">
                   {event.startTime} - {event.endTime}
                 </p>
               </div>

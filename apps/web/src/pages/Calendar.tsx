@@ -74,7 +74,7 @@ export default function Calendar() {
               {format(month, "MMMM yyyy")}
             </h2>
 
-            <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
+            <div className="mt-2 flex items-center gap-3 text-xs text-slate-400">
               {(["high", "medium", "low"] as const).map((priority) => (
                 <span key={priority} className="flex items-center gap-1.5">
                   <span
@@ -122,7 +122,7 @@ export default function Calendar() {
             {WEEKDAYS.map((weekday) => (
               <div
                 key={weekday}
-                className="bg-slate-900 px-2 py-2 text-center text-xs font-medium uppercase text-slate-500"
+                className="bg-slate-900 px-2 py-2 text-center text-xs font-medium uppercase text-slate-400"
               >
                 {weekday}
               </div>
@@ -160,7 +160,7 @@ export default function Calendar() {
                     </span>
 
                     {dayTasks.length > 0 && (
-                      <span className="text-[10px] text-slate-500">
+                      <span className="text-[10px] text-slate-400">
                         {dayTasks.length}
                       </span>
                     )}
@@ -173,7 +173,7 @@ export default function Calendar() {
                         title={`${task.title} — ${task.subject}`}
                         className={`flex items-center gap-1 rounded px-1 py-0.5 text-[11px] ${
                           task.status === "completed"
-                            ? "text-slate-500 line-through"
+                            ? "text-slate-400 line-through"
                             : "text-slate-300"
                         }`}
                       >
@@ -185,7 +185,7 @@ export default function Calendar() {
                     ))}
 
                     {dayTasks.length > 2 && (
-                      <p className="px-1 text-[10px] text-slate-500">
+                      <p className="px-1 text-[10px] text-slate-400">
                         +{dayTasks.length - 2} more
                       </p>
                     )}

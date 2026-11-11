@@ -69,7 +69,7 @@ export default function Schedule() {
           </dl>
 
           <div className="mt-6 border-t border-slate-800 pt-4">
-            <p className="mb-3 text-xs uppercase text-slate-500">Legend</p>
+            <p className="mb-3 text-xs uppercase text-slate-400">Legend</p>
 
             <ul className="space-y-2 text-xs text-slate-400">
               <li className="flex items-center gap-2">

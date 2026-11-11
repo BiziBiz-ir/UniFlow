@@ -45,7 +45,7 @@ export default function Subjects() {
         <div className="rounded-2xl border border-dashed border-slate-800 px-6 py-16 text-center">
           <BookOpen size={30} className="mx-auto text-slate-600" />
           <p className="mt-3 text-sm text-slate-400">No subjects yet</p>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-slate-400">
             Add a task with a subject and it will show up here.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function Subjects() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h2 className="font-semibold text-white">{name}</h2>
-                    <p className="mt-1 text-xs text-slate-500">
+                    <p className="mt-1 text-xs text-slate-400">
                       {subjectTasks.length} tasks · {completed} completed
                     </p>
                   </div>
@@ -72,14 +72,21 @@ export default function Subjects() {
                   </span>
                 </div>
 
-                <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-800">
+                <div
+                  role="progressbar"
+                  aria-label={`${name} completion`}
+                  aria-valuenow={percent}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  className="mt-4 h-1.5 overflow-hidden rounded-full bg-slate-800"
+                >
                   <div
                     className="h-full rounded-full bg-indigo-500 transition-all"
                     style={{ width: `${percent}%` }}
                   />
                 </div>
 
-                <p className="mt-2 text-xs text-slate-500">
+                <p className="mt-2 text-xs text-slate-400">
                   {percent}% complete
                 </p>
 
@@ -99,7 +106,7 @@ export default function Subjects() {
                       <span
                         className={`truncate ${
                           task.status === "completed"
-                            ? "text-slate-500 line-through"
+                            ? "text-slate-400 line-through"
                             : "text-slate-300"
                         }`}
                       >
@@ -109,7 +116,7 @@ export default function Subjects() {
                   ))}
 
                   {subjectTasks.length > 3 && (
-                    <li className="text-xs text-slate-500">
+                    <li className="text-xs text-slate-400">
                       +{subjectTasks.length - 3} more
                     </li>
                   )}

@@ -38,7 +38,7 @@ export default function TaskItem({
             : `Mark "${task.title}" as completed`
         }
         onClick={() => onToggle(task.id)}
-        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition ${
+        className={`relative mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition after:absolute after:-inset-2 after:content-[''] ${
           completed
             ? "border-emerald-500 bg-emerald-500 text-slate-950"
             : "border-slate-600 text-transparent hover:border-indigo-400"
@@ -50,13 +50,13 @@ export default function TaskItem({
       <div className="min-w-0 flex-1">
         <p
           className={`truncate text-sm font-medium ${
-            completed ? "text-slate-500 line-through" : "text-white"
+            completed ? "text-slate-400 line-through" : "text-white"
           }`}
         >
           {task.title}
         </p>
 
-        <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-500">
+        <p className="mt-1 flex items-center gap-1.5 text-xs text-slate-400">
           <span className="truncate">{task.subject}</span>
           <span aria-hidden="true">·</span>
           <CalendarDays size={12} className="shrink-0" />
@@ -80,7 +80,8 @@ export default function TaskItem({
           type="button"
           onClick={() => onEdit(task)}
           aria-label={`Edit "${task.title}"`}
-          className="rounded-md p-1.5 text-slate-500 transition hover:bg-slate-800 hover:text-white"
+          aria-haspopup="dialog"
+          className="rounded-md p-2 text-slate-400 transition hover:bg-slate-800 hover:text-white"
         >
           <Pencil size={15} />
         </button>
@@ -89,7 +90,7 @@ export default function TaskItem({
           type="button"
           onClick={() => onDelete(task)}
           aria-label={`Delete "${task.title}"`}
-          className="rounded-md p-1.5 text-slate-500 transition hover:bg-slate-800 hover:text-red-400"
+          className="rounded-md p-2 text-slate-400 transition hover:bg-slate-800 hover:text-red-400"
         >
           <Trash2 size={15} />
         </button>
