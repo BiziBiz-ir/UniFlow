@@ -15,6 +15,7 @@ const filters: { value: TaskFilter; label: string }[] = [
 ];
 
 interface TasksPanelProps {
+  title?: string;
   tasks: Task[];
   onAdd: (task: Omit<Task, "id">) => void;
   onUpdate: (id: number, updates: Partial<Task>) => void;
@@ -23,6 +24,7 @@ interface TasksPanelProps {
 }
 
 export default function TasksPanel({
+  title = "Tasks",
   tasks,
   onAdd,
   onUpdate,
@@ -95,7 +97,7 @@ export default function TasksPanel({
 
       <div className="mb-5 flex items-center justify-between gap-3">
         <div>
-          <h3 className="text-white font-semibold text-lg">Tasks</h3>
+          <h3 className="text-white font-semibold text-lg">{title}</h3>
           <p className="mt-1 text-xs text-slate-500">
             {openTasks} open · {counts.completed} completed
           </p>

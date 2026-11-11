@@ -45,8 +45,8 @@ export default function TaskForm({ task, onClose, onSubmit }: TaskFormProps) {
     const trimmedTitle = title.trim();
     const trimmedSubject = subject.trim();
 
-    if (!trimmedTitle || !trimmedSubject) {
-      setError("Title and subject are required.");
+    if (!trimmedTitle || !trimmedSubject || !deadline) {
+      setError("Title, subject and due date are required.");
       return;
     }
 

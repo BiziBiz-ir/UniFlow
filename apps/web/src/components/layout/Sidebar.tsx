@@ -1,66 +1,84 @@
-import {
-  LayoutDashboard,
-  CalendarDays,
-  CheckSquare,
-  BookOpen,
-  Clock,
-  Settings,
-  GraduationCap,
-} from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { GraduationCap, Settings, X } from "lucide-react";
 
-const menuItems = [
-  { name: "Dashboard", icon: LayoutDashboard },
-  { name: "Calendar", icon: CalendarDays },
-  { name: "Tasks", icon: CheckSquare },
-  { name: "Subjects", icon: BookOpen },
-  { name: "Schedule", icon: Clock },
-];
+import { navItems } from "../../config/navigation";
 
-export default function Sidebar() {
+interface SidebarProps {
+  mobileOpen: boolean;
+  onClose: () => void;
+}
+
+export default function Sidebar({ mobileOpen, onClose }: SidebarProps) {
   return (
-    <aside className="w-64 min-h-screen bg-slate-900 border-r border-slate-800 p-5 flex flex-col">
+    <>
+      {mobileOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation"
+          onClick={onClose}
+          className="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm lg:hidden"
+        />
+      )}
 
-      <div className="flex items-center gap-3 mb-12">
-        <div className="bg-indigo-500 p-2 rounded-xl">
-          <GraduationCap size={24} className="text-white" />
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col overflow-y-auto border-r border-slate-800 bg-slate-900 p-5 transition-transform duration-200 lg:sticky lg:inset-y-auto lg:top-0 lg:z-auto lg:h-screen lg:translate-x-0 ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+
+        <div className="mb-12 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="rounded-xl bg-indigo-500 p-2">
+              <GraduationCap size={24} className="text-white" />
+            </div>
+
+            <h1 className="text-xl font-bold text-white">UniFlow</h1>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close navigation"
+            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-800 hover:text-white lg:hidden"
+          >
+            <X size={18} />
+          </button>
         </div>
 
-        <h1 className="text-xl font-bold text-white">
-          UniFlow
-        </h1>
-      </div>
+        <nav className="flex-1 space-y-2">
 
-      <nav className="flex-1 space-y-2">
+          <p className="mb-4 text-xs uppercase text-slate-500">Workspace</p>
 
-        <p className="text-xs text-slate-500 uppercase mb-4">
-          Workspace
-        </p>
-
-        {menuItems.map((item, index) => {
-          const Icon = item.icon;
-
-          return (
-            <button
-              key={item.name}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition ${
-                index === 0
-                  ? "bg-indigo-500/15 text-indigo-400"
-                  : "text-slate-400 hover:bg-slate-800 hover:text-white"
-              }`}
+          {navItems.map(({ to, label, icon: Icon, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-xl px-4 py-3 transition ${
+                  isActive
+                    ? "bg-indigo-500/15 text-indigo-400"
+                    : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                }`
+              }
             >
               <Icon size={19} />
-              <span className="text-sm">{item.name}</span>
-            </button>
-          );
-        })}
+              <span className="text-sm">{label}</span>
+            </NavLink>
+          ))}
 
-      </nav>
+        </nav>
 
-      <button className="flex items-center gap-3 text-slate-400 hover:text-white p-3">
-        <Settings size={19} />
-        Settings
-      </button>
+        <button
+          type="button"
+          className="flex items-center gap-3 p-3 text-slate-400 transition hover:text-white"
+        >
+          <Settings size={19} />
+          Settings
+        </button>
 
-    </aside>
+      </aside>
+    </>
   );
 }
